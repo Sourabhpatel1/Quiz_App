@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="text-center">
+            <h1 class="text-white">Welcome To Mock Exam</h1>
+        </div>
+    </div>
+    <hr style="width: 100%; border: rgb(248, 98, 44) 2px solid;">
+    <div class="row justify-content-center">
+        <div class="card-group gap-2">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-3 col-lg-3 card-holder">
+                        <div class="card border border-3 border-light">
+                            <img src="{% static '/image/Exam.png' %}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title  text-center">Create an Exam</h5>
+                                <hr class="border border-5 border-dark">
+                                <p class="card-text">Create an Exam / Category which will enable you 
+                                                    to add Questions and Options to it Later</p>
+                                <a href="{% url 'addexam' %}" 
+                                    class="btn btn-primary"
+                                    style="width: 100%; margin: auto;">Add Exam</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3 card-holder">
+                        <div class="card border border-3 border-light">
+                            <img src="{% static '/image/Question.jpg' %}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title  text-center">Add Questions</h5>
+                                <hr class="border border-5 border-dark">
+                                <p class="card-text">Add Questions and Options to the Exam created earlier. You can answe the questions in the quiz section.</p>
+                                <a href="{% url 'addquestion' %}"
+                                class="btn btn-primary"
+                                style="width: 100%;">Add Questions</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3 card-holder">
+                        <div class="card border border-3 border-light">
+                            <img src="{% static '/image/Quiz.jpg' %}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title  text-center">Take the Quiz</h5>
+                                <hr class="border border-5 border-dark">
+                                <p class="card-text">Create an Exam / Category which will enable you 
+                                    to add Questions and Options to it Later</p>
+                                <a href="{% url  'quizes' %}"
+                                class="btn btn-primary"
+                                style="width: 100%;">View Exams</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

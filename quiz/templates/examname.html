@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% load widget_tweaks %} 
+{% block content %}
+<style>
+    input {
+        height: 100%;
+    }
+</style>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h1 class="text-white" style="text-align: center;">Add Exams Here</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success 
+                alert-dismissible" role="alert">
+                <span><b>{{message}}</b></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>               
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row justify-content-center">
+            {% for field in form %}
+            <div class="col-6" style="margin-top: 15px;">
+                <span class="text-white form-label" style="margin-bottom: 5px;">
+                   <b> Exam {{ field.label}}</b>
+                </span>
+                <span class="form-control" style="margin: 0; padding: 0; height: 40px;">
+                    {{field}}
+                </span>
+            </div>
+            {% endfor %}
+            <button type="submit" value="Add Exam"
+            class="btn btn-primary"
+            style="width: 30vw; height: 40px;
+            margin-top: 40px;">
+            Add Exam
+        </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

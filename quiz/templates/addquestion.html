@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+{% load widget_tweaks %} 
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <span>{{message}}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-7" style="border: solid white 2px;">
+            <h2 class="text-white" 
+            style="text-align: center;">Exam Name and Question</h2>
+        </div>
+        <div class="col-5" style="border: solid white 2px;">
+            <h2 class="text-white" 
+            style="text-align: center;">Options for the Questions</h2>
+        </div>
+    </div>
+    <hr style="width: 100%; border: solid 4px rgb(255, 255, 255);">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row justify-content-center">
+            <div class="col-7">
+                {{form.as_p}}
+            </div>
+            <div class="col-5">
+                {{formset.as_p}}
+            </div>
+            <input type="submit" value="Submit"
+            style="width: 50%; margin: auto;"
+            class="btn btn-success">
+        </div>
+    </form>
+</div>
+<script>
+    window.onload = ()=>{
+        sn = document.querySelectorAll('input[type="number"]')
+        let x = 1
+        sn.forEach(item => {
+            item.value = x
+            item.innerHTML  = x
+            x++
+        })
+
+        labels = document.getElementsByTagName('label')
+        Array.from(labels).forEach(item=>{
+            item.setAttribute('class', 'form-label text-white')
+        })
+
+        inputs = document.getElementsByTagName('input')
+        Array.from(inputs).forEach(item=>{
+            if (item.type == 'checkbox') {
+                item.setAttribute('class', 'form-check-input')
+            } else if (item.type != 'submit'){
+                item.setAttribute('class', 'form-control')
+            }
+        })
+
+        document.getElementById('id_exam_name').setAttribute(
+            'class', 'form-select')
+        document.getElementById('id_question').setAttribute(
+            'class', 'form-control'
+        )
+    }
+
+    $(document).ready(function () {
+    //change selectboxes to selectize mode to be searchable
+        $("select").select2();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% for field in form %}
+<div class="row justify-content-center">
+    <div class="col-8">
+        <p class="form-label text-white">{{field.label}}</p>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-8">
+        <p class="form-control">{{field}}</p>
+    </div>
+</div>
+<hr style="border: rgb(255, 255, 255) solid 2px;">
+{% endfor %}
+{% for f in formset %}
+<div class="row justify-content-center">
+    <div class="col-8">
+        <p class="form-label text-white">{{f.label}}</p>
+    </div>
+    <div class="col-8">
+        <p class="form-control">{{f}}</p>
+    </div>
+</div>
+{% endfor %}
+<div class="row justify-content-center" style="margin-top: 20px;">
+    <div class="col-8">
+        <input type="submit" value="Add" class="btn btn-success btn-lg">
+    </div>
+</div>
+
+
+
+
+    let evaluated = false
+    window.onload = ()=>{
+        let score = 0
+        btn = document.getElementById('check')
+        btn.addEventListener('click', (e)=>{
+            correct = document.querySelectorAll('.True')
+            if (evaluated !== true) {
+                correct.forEach(item=>{
+                    if (item.checked) {
+                        score++
+                    }
+                })
+                evaluated = true
+            } else {
+                window.alert("Exam Already Evaluated!")
+            }
+
+            if (!document.getElementById('score')) {
+                const score_div = document.createElement('DIV')
+                score_div.setAttribute('id', 'score')
+                score_div.innerHTML = "Total Score Is : " + score.toString()
+                document.body.appendChild(score_div)
+            }
+        })  
+    }

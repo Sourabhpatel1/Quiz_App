@@ -1,0 +1,114 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .inactive {
+        display: none !important;
+    }
+
+    .active {
+        display: block;
+    }
+
+    .g {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 200px);
+        margin: 5px;
+        gap: 1em;
+    }
+
+    .score {
+        display: flex;
+        height: 75px;
+        font-size: 24px;
+        color: white;
+        font-weight: 900;
+        border: solid white 4px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .true {
+        border: solid 1px rgb(177, 212, 141);
+    }
+
+    .false {
+        border: solid 1px crimson;
+    }
+
+    .q-panel, .r-panel {
+        border: solid white 3px;
+        width: 50%;
+    }
+</style>
+<br>
+<div class="container">
+    {% for q, a in data.items %}
+    <div class="row justify-content-center inactive" id="{{forloop.counter}}" style="min-height: 65vh;">
+        <div class="col-lg-12 col-sm-12 col-md-12">
+            <h2 style="text-align: center; color: white;" class="question-no">
+            </h2>
+            <hr style="border: white solid 2px;">
+            <div class="question-text text-white">
+                <span style="font-size: 1.5rem; font-weight: 600; white-space: pre-wrap;">{{q}}</span>
+            </div>
+        </div>
+        <div class="col-lg-12 col-sm-12 col-md-12">
+            <form>
+            {% for ans, val in a.items %}
+            <div class="answer">
+                <input type="radio" class="form-check-input {{val.1}}" name="answer">
+                <span style="color: white;">{{val.0}}</span>
+            </div>
+            {% endfor %}
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row justify-content-center" style="margin-top: 15px;">
+        <div class="col-lg-5 col-md-5 col-lg-5 col-sm-12">
+            <div class="g">
+                <button type="button" id="prev" class="btn btn-secondary">Previous</button>
+                <button type="button" id="next" class="btn btn-secondary">Next</button>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center" style="margin-top: 15px;">
+        <div class="col-sm-12 col-lg-7 col-md-7">
+            <div class="g col-12">
+                <button type="button" id="eval" class="btn btn-success">Evaluate</button>
+                <button type="button" id="mark" class="btn btn-primary">Mark For Review</button>
+                <button type="button" id="unmark" class="btn btn-danger">Unmark Question</button>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-12 col-sm-12 score inactive" id="score">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-sm-12 q-panel">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12"><h2 class="text-white">Questions</h2></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12" id="q-panel"></div>
+            </div>
+        </div>
+        <div class="col-sm-12 r-panel">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12"><h2 class="text-white">Marked For Review</h2></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-lg-6" id="r-panel"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static '/js/quiz.js' %}"></script>
+<script>
+    const qLen = '{{data|length}}'
+</script>
+{% endblock %}
