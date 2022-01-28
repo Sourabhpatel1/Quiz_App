@@ -1,0 +1,21 @@
+body {
+    color: white;
+    background: linear-gradient(to right, #16242b, #0d5168, #2c5364);
+}
+
+input {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.card:hover {
+    box-shadow: 10px 10px 15px rgba(255, 255, 255, 0.144);
+    transition: box-shadow 0.4s ease;
+    transform: scale(1.009);
+}
+
+.card{
+    margin-top: 15px;
+    gap: 1em;
+}
